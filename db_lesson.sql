@@ -1,5 +1,5 @@
 
-Q1
+1
 CREATE TABLE `departments`(
   `department_id` INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
   `name` VARCHAR(20) NOT NULL,
@@ -63,10 +63,10 @@ FROM
   `people`    --  テーブル名peopleからSELCTで指定した３つのカラムを取得する
 WHERE
   `department_id` = 1   --  部署IDが1番の特定のレコード
-ORDER BY    --  昇順で並び替え
-  `created_at`;   --  レコードが作成された日時
+ORDER BY
+  `created_at`;   --  レコードが作成された日時昇順で並び替え
 
-  peopleテーブルから指定した部署のnameとemailとageのカラムを、レコードが作成された日時の順番（昇順）で取得する。
+  peopleテーブルから指定した部署のnameとemailとageカラムをレコードが作成された順番（昇順）で取得する。
 
 Q7
 SELECT name,age FROM people WHERE age BETWEEN 40 AND 49 AND gender = 1 UNION ALL SELECT name,age FROM people
