@@ -1,5 +1,5 @@
 
-1
+-- Q1
 CREATE TABLE `departments`(
   `department_id` INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
   `name` VARCHAR(20) NOT NULL,
@@ -7,10 +7,10 @@ CREATE TABLE `departments`(
   `updated_at` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 );
 
-Q2
+-- Q2
 ALTER TABLE people ADD department_id INT UNSIGNED AFTER email;
 
-Q3
+-- Q3
 INSERT INTO departments (name)
   VALUES
   ('営業'),
@@ -48,15 +48,15 @@ INSERT INTO reports(person_id,content)
 
 SELECT * FROM people WHERE department_id IS NULL;
 
-Q4
+-- Q4
 UPDATE people
 SET department_id = ELT(FIELD(person_id,1,2,3,4,6,7,8,9,10,11),1,3,2,4,5,2,4,3,5,1)
 WHERE person_id IN (1,2,3,4,6,7,8,9,10,11);
 
-Q5
+-- Q5
 SELECT * FROM people WHERE gender = 1 ORDER BY age DESC;
 
-Q6
+-- Q6
 SELECT
   `name`, `email`, `age`   --  カラム名を指定して３つのカラムを取得
 FROM
@@ -68,22 +68,22 @@ ORDER BY
 
   peopleテーブルから指定した部署のnameとemailとageカラムをレコードが作成された順番（昇順）で取得する。
 
-Q7
+-- Q7
 SELECT name,age FROM people WHERE age BETWEEN 40 AND 49 AND gender = 1 UNION ALL SELECT name,age FROM people
 WHERE age BETWEEN 20 AND 29 AND gender = 2;
 
-Q8
+-- Q8
 SELECT name,age,department_id FROM people WHERE department_id = 1 ORDER BY age ASC;
 
-Q9
+-- Q9
 SELECT AVG(age) AS average_age FROM people WHERE gender = 2 AND department_id = 2;
 
-Q10
+-- Q10
 SELECT p.name AS person_name,d.name AS department_name,r.content AS content
   FROM people AS p JOIN reports AS r ON p.person_id = r.person_id LEFT JOIN departments AS d ON p.department_id = d.department_id
-  WHERE r.content IS NOT NULL AND r.content <> '';
+  WHERE r.content <> '' AND r.content <> '';
 
 
-Q11
+-- Q11
 SELECT p.name FROM people AS p LEFT JOIN reports AS r ON p.person_id = r.person_id
   WHERE r.person_id IS NULL OR r.content = '';
